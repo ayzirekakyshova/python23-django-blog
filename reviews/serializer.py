@@ -10,6 +10,8 @@ class CommentSerializer(ModelSerializer):
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         rep["author"] = instance.author.username
-        comments = instance.comments.all()
-        rep["comments"] = CommentSerializer(comments, many=True).data
+        rep["like"] = instance.author.username
+        del rep['post']
+        # comments = instance.comments.all()
+        # rep["comments"] = CommentSerializer(comments, many=True).data
         return rep     

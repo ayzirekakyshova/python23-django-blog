@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # Libs
     'rest_framework',
+    'drf_yasg',
 
     # my apps
     'main',

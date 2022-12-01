@@ -4,5 +4,12 @@ from .models import Comment
 
 class CommentSerializer(ModelSerializer):
     class Meta:
-        model  = credits
-        
+        model  = Comment
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep["author"] = instance.author.username
+        comments = instance.comments.all()
+        rep["comments"] = CommentSerializer(comments, many=True).data
+        return rep     
